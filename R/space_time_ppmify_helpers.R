@@ -6,7 +6,9 @@
 #' @param exposure_raster
 #' @param num_periods
 #' @import velox
-library(velox)
+
+# install.packages('groundhog')
+groundhog::groundhog.library(velox, '2022-04-30')
 get_int_points_exposure_weights <- function(ppmx, ppm_cases_points_counts, exposure_raster, periods){
 
   # First identify which are the local_cases and integration rows
