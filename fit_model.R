@@ -21,6 +21,8 @@ plot(covariates)
 cases <- read.csv("data/dummy_cases.csv")
 cases_sf <- st_as_sf(cases, coords = c("lng", "lat"))
 
+# install.packages('leaflet')
+library(leaflet)
 # Visualize cases by timeslice
 leaflet() %>% addProviderTiles("CartoDB.Positron") %>% 
   addCircleMarkers(data=cases_sf, color = rainbow(5)[cases_sf$timeslice]) %>%

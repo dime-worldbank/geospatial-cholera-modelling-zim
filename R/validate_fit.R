@@ -1,4 +1,4 @@
-# install.packages('hydroGF')
+# install.packages('hydroGOF')
 library(hydroGOF)
 validate_fit <- function(pred_inc_stack,
                          observations_sf,
