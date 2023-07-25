@@ -114,8 +114,7 @@ space_time_ppmify <- function(points,
     
     # First check whether any coariates are factors
     factor_covars <- which(is.factor(covariates))
-    
-    if(!(res(covariates)==res(reference_raster) & extent(covariates)==extent(reference_raster))){
+    if(!(ncell(covariates)==ncell(reference_raster) & extent(covariates)==extent(reference_raster))){
       covariates <- resample(covariates, reference_raster)
     }
       extracted_covar <- data.frame(raster::extract(covariates, ppm_df[,c("x", "y")]))
