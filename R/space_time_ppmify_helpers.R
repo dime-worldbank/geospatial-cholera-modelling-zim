@@ -9,7 +9,8 @@
 
 # install.packages('remotes')
 # remotes::install_version('velox', version = '0.1.0')
-library(velox)
+#library(velox)
+library(terra)
 get_int_points_exposure_weights <- function(ppmx, ppm_cases_points_counts, exposure_raster, periods){
 
   # First identify which are the local_cases and integration rows
@@ -39,8 +40,10 @@ get_int_points_exposure_weights <- function(ppmx, ppm_cases_points_counts, expos
                                                     ppm_case_points_coords)] <- NA
 
   # Extract from offset raster
-  exposure_raster_velox <- velox(exposure_raster_non_case_pixels)
-  ppm_int_points$exposure <- exposure_raster_velox$extract(spoly, fun = function(x){sum(x, na.rm = TRUE)})
+  ppm_int_points$exposure <- terra::extract(exposure_raster_non_case_pixels,
+                                            spoly,
+                                            fun = sum,
+                                            na.rm = TRUE)
   
   # bind with previous periods
     ppm_int_points$period <- j
